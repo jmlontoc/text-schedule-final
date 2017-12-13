@@ -1,46 +1,72 @@
-package mobidev.dlsu.edu.textschedulefinal;
+package mobidev.dlsu.edu.textschedulefinal.AutoReply;
 
-import android.Manifest;
 import android.content.ContentResolver;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.provider.ContactsContract;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import java.util.ArrayList;
 
-import mobidev.dlsu.edu.textschedulefinal.AutoReply.AutoReplyActivity;
 import mobidev.dlsu.edu.textschedulefinal.Contacts.Contact;
+import mobidev.dlsu.edu.textschedulefinal.Contacts.ContactAdapter;
+import mobidev.dlsu.edu.textschedulefinal.R;
 
-public class MainActivity extends AppCompatActivity {
+public class ModifyAutoReply extends AppCompatActivity {
 
-    Button statusTab, scheduleTab, autoReplyTab;
+
+    private ArrayList<Contact> contactsCart;
+
+    RecyclerView rvContacts;
+    EditText etMessage, etReply;
+    Button submitBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_modify_auto_reply);
 
-        statusTab = findViewById(R.id.status_tab);
-        scheduleTab = findViewById(R.id.schedule_tab);
-        autoReplyTab = findViewById(R.id.auto_reply_tab);
+        rvContacts = findViewById(R.id.rv_contacts1);
+        etMessage = findViewById(R.id.et_message1);
+        etReply = findViewById(R.id.et_reply1);
+        submitBtn = findViewById(R.id.btn_submit_ar1);
 
-        // once the tabs are clicked
+        contactsCart = new ArrayList<>();
 
-        autoReplyTab.setOnClickListener(new View.OnClickListener() {
+        long id = getIntent().getExtras().getLong("modify");
+
+        // display();
+
+        AutoReplyDBHelper helper = new AutoReplyDBHelper(getBaseContext());
+
+        AutoReply autoReply = helper.getAutoReply(id);
+
+        Log.i("asd", autoReply.getMessage() + " " + autoReply.getReply());
+
+        etMessage.setText(autoReply.getMessage());
+        etReply.setText(autoReply.getReply());
+
+    }
+
+    public void display() {
+        ContactAdapter adapter = new ContactAdapter(getContacts());
+
+        rvContacts.setAdapter(adapter);
+        rvContacts.setLayoutManager(new LinearLayoutManager(getBaseContext()));
+
+        adapter.setOnItemClickListener(new ContactAdapter.OnItemClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getBaseContext(), AutoReplyActivity.class);
-                startActivity(i);
+            public void onItemClick(Contact contact) {
+
+                contactsCart.add(contact);
+
             }
         });
-
     }
 
     public ArrayList<Contact> getContacts() {
@@ -74,16 +100,4 @@ public class MainActivity extends AppCompatActivity {
 
         return alContacts;
     }
-
-    public boolean checkSMSPermission() {
-
-        return ActivityCompat.checkSelfPermission(this, Manifest.permission.RECEIVE_SMS)
-                == PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_SMS)
-                        == PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS)
-                        == PackageManager.PERMISSION_GRANTED;
-    }
-
-
 }
