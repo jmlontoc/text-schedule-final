@@ -99,6 +99,18 @@ public class AutoReplyDBHelper extends SQLiteOpenHelper {
         return id;
     }
 
+    public boolean deleteAutoReply(long id) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        int rows = db.delete(AutoReply.TABLE_NAME,
+                             AutoReply.COLUMN_ID + "=?",
+                             new String[] {id+""});
+
+        db.delete(AutoReply.TABLE2_NAME, AutoReply.COLUMN_AR_ID + "=?", new String[]{id+""});
+
+        return rows > 0;
+    }
+
     public boolean editAutoReply(AutoReply newAR, long currentID) {
 
         SQLiteDatabase db = getWritableDatabase();
@@ -108,10 +120,21 @@ public class AutoReplyDBHelper extends SQLiteOpenHelper {
         contentValues.put(AutoReply.COLUMN_MESSAGE, newAR.getMessage());
         contentValues.put(AutoReply.COLUMN_REPLY, newAR.getReply());
 
+        ContentValues cv = new ContentValues();
+
+        for (Contact contact : newAR.getContacts()) {
+            cv.put(AutoReply.COLUMN_CONTACT_NAME, contact.getDisplayName());
+            cv.put(AutoReply.COLUMN_CONTACT_NUMBER, contact.getNumber());
+
+            db.update(AutoReply.TABLE2_NAME, cv, AutoReply.COLUMN_AR_ID + "=?",
+                      new String[]{currentID+""});
+        }
+
         int rowsAffected = db.update(AutoReply.TABLE_NAME,
                 contentValues,
                 AutoReply.COLUMN_ID + "=?",
                 new String[]{currentID+""});
+
 
         db.close();
 
@@ -119,15 +142,6 @@ public class AutoReplyDBHelper extends SQLiteOpenHelper {
 
     }
 
-    public boolean deleteAutoReply(long id) {
-
-        SQLiteDatabase db = getWritableDatabase();
-        int rows = db.delete(AutoReply.TABLE_NAME, AutoReply.COLUMN_ID + "=?",
-                new String[] {id+""});
-
-        db.close();
-        return rows > 0;
-    }
 
     public Cursor getAllAutoReplies() {
         return getWritableDatabase().query(

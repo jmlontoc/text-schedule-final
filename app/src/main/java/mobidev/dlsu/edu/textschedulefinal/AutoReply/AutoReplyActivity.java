@@ -51,4 +51,16 @@ public class AutoReplyActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void update() {
+        adapter.changeCursor(db.getAllAutoReplies());
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        update();
+    }
 }

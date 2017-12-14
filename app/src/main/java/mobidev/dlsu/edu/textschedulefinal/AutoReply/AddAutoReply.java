@@ -108,6 +108,7 @@ public class AddAutoReply extends AppCompatActivity {
                         // add to db
 
                         dbHelper.addAutoReply(autoReply);
+
                         finish();
                     }
                 }
@@ -169,5 +170,6 @@ public class AddAutoReply extends AppCompatActivity {
             }
         });
     }
+
 
 }

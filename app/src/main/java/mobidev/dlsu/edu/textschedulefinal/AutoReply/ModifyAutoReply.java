@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 
 import mobidev.dlsu.edu.textschedulefinal.Contacts.Contact;
 import mobidev.dlsu.edu.textschedulefinal.Contacts.ContactAdapter;
+import mobidev.dlsu.edu.textschedulefinal.Helper;
 import mobidev.dlsu.edu.textschedulefinal.R;
 
 public class ModifyAutoReply extends AppCompatActivity {
@@ -24,7 +26,7 @@ public class ModifyAutoReply extends AppCompatActivity {
 
     RecyclerView rvContacts;
     EditText etMessage, etReply;
-    Button submitBtn;
+    Button submitBtn, deleteBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +37,13 @@ public class ModifyAutoReply extends AppCompatActivity {
         etMessage = findViewById(R.id.et_message1);
         etReply = findViewById(R.id.et_reply1);
         submitBtn = findViewById(R.id.btn_submit_ar1);
+        deleteBtn = findViewById(R.id.btn_delete);
 
         contactsCart = new ArrayList<>();
 
-        long id = getIntent().getExtras().getLong("modify");
+        final long id = getIntent().getExtras().getLong("modify");
 
-        // display();
+        display();
 
         AutoReplyDBHelper helper = new AutoReplyDBHelper(getBaseContext());
 
@@ -50,6 +53,61 @@ public class ModifyAutoReply extends AppCompatActivity {
 
         etMessage.setText(autoReply.getMessage());
         etReply.setText(autoReply.getReply());
+
+
+        // delete
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                AutoReplyDBHelper db = new AutoReplyDBHelper(getBaseContext());
+
+                db.deleteAutoReply(id);
+
+                finish();
+
+            }
+        });
+
+        // submit edited thing
+        submitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String message = etMessage.getText().toString().trim();
+                String reply = etReply.getText().toString().trim();
+
+                //error checking
+                int errorCount = 0;
+
+                if (contactsCart.size() == 0) {
+                    Helper.easierToast("Please add contact/s", getBaseContext());
+                    errorCount++;
+                }
+
+                if (message.equals("")) {
+                    Helper.easierToast("Please fill up all fields", getBaseContext());
+                    errorCount++;
+                }
+
+                if (reply.equals("")) {
+                    Helper.easierToast("Please fill up all fields", getBaseContext());
+                    errorCount++;
+                }
+
+                if (errorCount == 0) {
+                    AutoReplyDBHelper dbHelper = new AutoReplyDBHelper(getBaseContext());
+
+                    AutoReply autoReply = new AutoReply(reply, message, 1);
+                    autoReply.setContacts(contactsCart);
+
+                    // add to db
+
+                    dbHelper.editAutoReply(autoReply, id);
+
+                    finish();
+                }
+            }
+        });
 
     }
 
