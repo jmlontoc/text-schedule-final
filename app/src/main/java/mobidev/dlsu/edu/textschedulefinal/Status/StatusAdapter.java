@@ -1,4 +1,4 @@
-package mobidev.dlsu.edu.textschedulefinal.AutoReply;
+package mobidev.dlsu.edu.textschedulefinal.Status;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -16,20 +16,20 @@ import mobidev.dlsu.edu.textschedulefinal.R;
  * Created by user on 12/4/2017.
  */
 
-public class AutoReplyAdapter extends CursorRecyclerViewAdapter<AutoReplyAdapter.ViewHolder> {
+public class StatusAdapter extends CursorRecyclerViewAdapter<StatusAdapter.ViewHolder> {
 
     // private OnItemClickListener onItemClickListener;
 
-    public AutoReplyAdapter(Context context, Cursor cursor) {
+    public StatusAdapter(Context context, Cursor cursor) {
         super(context, cursor);
     }
 
     @Override
-    public void onBindViewHolder(AutoReplyAdapter.ViewHolder viewHolder, Cursor cursor) {
+    public void onBindViewHolder(StatusAdapter.ViewHolder viewHolder, Cursor cursor) {
 
-        final long id = cursor.getLong(cursor.getColumnIndex(AutoReply.COLUMN_ID));
-        String message = cursor.getString(cursor.getColumnIndex(AutoReply.COLUMN_MESSAGE));
-        String reply = cursor.getString(cursor.getColumnIndex(AutoReply.COLUMN_REPLY));
+        final long id = cursor.getLong(cursor.getColumnIndex(Status.COLUMN_ID));
+        String message = cursor.getString(cursor.getColumnIndex(Status.COLUMN_STATUS));
+        String reply = cursor.getString(cursor.getColumnIndex(Status.COLUMN_REPLY));
 
         viewHolder.tvMessage.setText(message);
         viewHolder.tvReply.setText(reply);
@@ -45,9 +45,9 @@ public class AutoReplyAdapter extends CursorRecyclerViewAdapter<AutoReplyAdapter
     }
 
     @Override
-    public AutoReplyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public StatusAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v= LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.auto_reply_item, parent, false);
+                .inflate(R.layout.status_item, parent, false);
 
         return new ViewHolder(v);
     }
@@ -60,9 +60,9 @@ public class AutoReplyAdapter extends CursorRecyclerViewAdapter<AutoReplyAdapter
         public ViewHolder(View itemView) {
 
             super(itemView);
-            tvMessage = itemView.findViewById(R.id.tv_ar_message);
-            tvReply = itemView.findViewById(R.id.tv_ar_reply);
-            layout = itemView.findViewById(R.id.ar_layout);
+            tvMessage = itemView.findViewById(R.id.tv_status_message);
+            tvReply = itemView.findViewById(R.id.tv_status_reply);
+            layout = itemView.findViewById(R.id.status_layout);
 
         }
     }

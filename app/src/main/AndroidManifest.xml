@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="mobidev.dlsu.edu.textschedulefinal">
+
+
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -24,6 +32,12 @@
         </receiver>
         <activity android:name=".Schedule.AddSchedule"></activity>
 
+        <activity android:name=".AutoReply.AutoReplyActivity" />
+        <activity android:name=".AutoReply.AddAutoReply" />
+        <activity android:name=".AutoReply.ModifyAutoReply" />
+        <activity android:name=".Status.StatusActivity" />
+        <activity android:name=".Status.AddStatus" />
+        <activity android:name=".Status.ModifyStatus"></activity>
     </application>
 
 </manifest>

@@ -1,19 +1,19 @@
-package mobidev.dlsu.edu.textschedulefinal.AutoReply;
+package mobidev.dlsu.edu.textschedulefinal.Status;
 
 import java.util.ArrayList;
 
 import mobidev.dlsu.edu.textschedulefinal.Contacts.Contact;
 
-public class AutoReply {
+public class Status {
 
-    public static final String TABLE_NAME = "Auto_Reply";
+    public static final String TABLE_NAME = "Status";
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_REPLY = "reply";
-    public static final String COLUMN_MESSAGE = "message";
+    public static final String COLUMN_STATUS = "status";
     public static final String COLUMN_ACTIVE = "is_active";
 
-    public static final String TABLE2_NAME = "Auto_Reply_Recipients";
-    public static final String COLUMN_AR_ID = "auto_reply_id";
+    public static final String TABLE2_NAME = "Status_Recipients";
+    public static final String COLUMN_STATUS_ID = "status_id";
     public static final String COLUMN_CONTACT_NAME = "name";
     public static final String COLUMN_CONTACT_NUMBER = "number";
 
@@ -26,10 +26,10 @@ public class AutoReply {
         return id;
     }
 
-    public AutoReply(long id, String reply, String message) {
+    public Status(long id, String reply, String status) {
         this.id = id;
         this.reply = reply;
-        this.message = message;
+        this.status = status;
     }
 
     public ArrayList<Contact> getContacts() {
@@ -40,19 +40,19 @@ public class AutoReply {
         this.contacts = contacts;
     }
 
-    public AutoReply(String reply, String message, int isActive) {
+    public Status(String reply, String status, int isActive) {
         this.reply = reply;
         this.isActive = isActive;
-        this.message = message;
+        this.status = status;
         this.contacts = new ArrayList<>();
     }
 
-    public AutoReply(String reply, String message) {
+    public Status(String reply, String message) {
         this.reply = reply;
-        this.message = message;
+        this.status = status;
     }
 
-    public AutoReply() {
+    public Status() {
         this.contacts = new ArrayList<>();
     }
 
@@ -76,15 +76,15 @@ public class AutoReply {
         this.reply = reply;
     }
 
-    public String getMessage() {
-        return message;
+    public String getstatus() {
+        return status;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setMessage(String status) {
+        this.status = status;
     }
 
-    private String message;
+    private String status;
 
 
 

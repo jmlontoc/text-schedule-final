@@ -8,6 +8,24 @@
     tools:context="mobidev.dlsu.edu.textschedulefinal.MainActivity">
 
     <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SCHEDULER"
+        android:id="@+id/schedule_tab"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="AUTO REPLY"
+        android:id="@+id/auto_reply_tab"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="STATUS"
+        android:id="@+id/status_tab"/>
+
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add"
