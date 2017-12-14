@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import mobidev.dlsu.edu.textschedulefinal.AutoReply.AutoReply;
 import mobidev.dlsu.edu.textschedulefinal.AutoReply.AutoReplyDBHelper;
+import mobidev.dlsu.edu.textschedulefinal.Status.Status;
+import mobidev.dlsu.edu.textschedulefinal.Status.StatusDBHelper;
 
 /**
  * Created by user on 12/14/2017.
@@ -40,9 +42,39 @@ public class SMSCore extends BroadcastReceiver {
                 String sender = sms.getOriginatingAddress();
                 String body = sms.getMessageBody();
 
-                autoReply(context, sender, body);
+                Log.i("what", "plase");
 
+                autoReply(context, sender, body);
+                statusReply(context, sender, body);
             }
+        }
+    }
+
+    public void statusReply(Context context, String sender, String body) {
+        StatusDBHelper db = new StatusDBHelper(context);
+
+        Cursor cursor = db.getAllStatuses();
+        sender = sender.trim();
+
+        if (cursor.moveToFirst()) {
+
+            do {
+                String message = cursor.getString(cursor.getColumnIndex(Status.COLUMN_STATUS));
+                String reply = cursor.getString(cursor.getColumnIndex(Status.COLUMN_REPLY));
+                int isActive = cursor.getInt(cursor.getColumnIndex(Status.COLUMN_ACTIVE));
+                long id = cursor.getLong(cursor.getColumnIndex(Status.COLUMN_ID));
+
+                Log.i("wew", message + " " + body + " " + isActive);
+
+                if (isActive == 0) {
+
+                    if (body.toUpperCase().contains(message.toUpperCase())) {
+
+                        sendStatusMessage(id, context, sender, reply);
+                    }
+                }
+
+            }while(cursor.moveToNext());
         }
     }
 
@@ -86,6 +118,13 @@ public class SMSCore extends BroadcastReceiver {
         return number.replaceAll("\\s", "");
     }
 
+    public String getFirstName(String name) {
+        String [] split = name.split(" ");
+
+        return split[0];
+
+    }
+
     public void sendToRecipients(long id, Context context, String sender, String reply) {
 
 
@@ -118,8 +157,7 @@ public class SMSCore extends BroadcastReceiver {
 
                         smsManager.sendTextMessage(
                                 sender,
-                                null,
-                                name + ", " + reply,
+                                null, reply + ", " + getFirstName(name),
                                 null,
                                 null
 
@@ -143,7 +181,66 @@ public class SMSCore extends BroadcastReceiver {
                     smsManager.sendTextMessage(
                             sender,
                             null,
-                            name + ", " + reply,
+                            reply + ", " + getFirstName(name),
+                            null,
+                            null
+
+                    );
+                }
+
+            }while (c.moveToNext());
+        }
+    }
+
+    public void sendStatusMessage(long id, Context context, String sender, String reply) {
+        Cursor c = new StatusDBHelper(context).getStatusRecipients(id);
+
+        if (c.moveToFirst()) {
+
+            do {
+
+                if (c.getString(c.getColumnIndex(Status.COLUMN_CONTACT_NUMBER)).contains("+")) {
+
+
+                    if (sender.equalsIgnoreCase(
+                            justTrim(
+                                    c.getString(c.getColumnIndex(Status.COLUMN_CONTACT_NUMBER))
+                            )
+                    )) {
+
+                        Log.i("im close", "yep");
+
+                        String name = c.getString(c.getColumnIndex(Status.COLUMN_CONTACT_NAME));
+
+                        SmsManager smsManager = SmsManager.getDefault();
+
+                        smsManager.sendTextMessage(
+                                sender,
+                                null, reply + ", " + getFirstName(name),
+                                null,
+                                null
+
+                        );
+
+                    }
+                }
+
+                if (sender.equalsIgnoreCase(
+                        convertToNumber(
+                                c.getString(c.getColumnIndex(Status.COLUMN_CONTACT_NUMBER))
+                        )
+                )) {
+
+                    Log.i("im close", "yep");
+
+                    String name = c.getString(c.getColumnIndex(Status.COLUMN_CONTACT_NAME));
+
+                    SmsManager smsManager = SmsManager.getDefault();
+
+                    smsManager.sendTextMessage(
+                            sender,
+                            null,
+                            reply + ", " + getFirstName(name),
                             null,
                             null
 
