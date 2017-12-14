@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import java.util.Calendar;
 import java.util.Date;
 
+import mobidev.dlsu.edu.textschedulefinal.AutoReply.AutoReplyActivity;
 import mobidev.dlsu.edu.textschedulefinal.R;
 import mobidev.dlsu.edu.textschedulefinal.SMSCore;
 
@@ -30,6 +32,8 @@ public class AddSchedule extends AppCompatActivity {
     TextView tvSmsName, tvSmsNumber;
     EditText etSmsText;
     ScheduleDatabaseHelper dbHelper;
+
+    ImageView back_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,17 @@ public class AddSchedule extends AppCompatActivity {
         smsNumber = getIntent().getExtras().getString("number").replaceAll("\\s", "");
         tvSmsName.setText(smsName);
         tvSmsNumber.setText(smsNumber);
+
+        back_button = findViewById(R.id.back);
+
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getBaseContext(), SelectContact.class);
+                startActivity(i);
+            }
+        });
+
         buttonSendSms.setOnClickListener(new Button.OnClickListener(){
             public void onClick(View v) {
 

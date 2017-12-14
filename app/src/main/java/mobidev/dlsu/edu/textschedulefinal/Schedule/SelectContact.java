@@ -13,19 +13,24 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 
 import mobidev.dlsu.edu.textschedulefinal.AutoReply.AutoReply;
+import mobidev.dlsu.edu.textschedulefinal.AutoReply.AutoReplyActivity;
 import mobidev.dlsu.edu.textschedulefinal.AutoReply.AutoReplyDBHelper;
 import mobidev.dlsu.edu.textschedulefinal.Contacts.Contact;
 import mobidev.dlsu.edu.textschedulefinal.Contacts.ContactAdapter;
 import mobidev.dlsu.edu.textschedulefinal.Helper;
+import mobidev.dlsu.edu.textschedulefinal.MainActivity;
 import mobidev.dlsu.edu.textschedulefinal.R;
 
 public class SelectContact extends AppCompatActivity {
     public final static int REQUEST_READ_CONTACTS = 0;
     private ArrayList<Contact> contactsCart;
+
+    ImageView back_button;
 
     RecyclerView rvContacts;
     @Override
@@ -33,6 +38,16 @@ public class SelectContact extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_contact);
         rvContacts = findViewById(R.id.rv_list);
+
+        back_button = findViewById(R.id.back);
+
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(i);
+            }
+        });
         start();
     }
     @Override
