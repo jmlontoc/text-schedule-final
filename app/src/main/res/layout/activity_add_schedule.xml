@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="mobidev.dlsu.edu.textschedulefinal.Schedule.AddSchedule">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"><TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Schedule a text:"
+        android:textSize="20sp"
+        android:layout_marginLeft="5dp"
+        />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Enter Phone Number:"
+            android:layout_marginLeft="5dp"/>
+        <EditText
+            android:id="@+id/smsnumber"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Enter Phone SMS Text:"
+            android:layout_marginLeft="5dp"
+            />
+        <EditText
+            android:id="@+id/smstext"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            />
+        <DatePicker
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/cv_calendar"
+            android:calendarViewShown="false"
+            android:datePickerMode="spinner"
+            android:spinnersShown="true"></DatePicker>
+        <TimePicker
+            android:id="@+id/tp_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:timePickerMode="spinner" />
+        <Button
+            android:id="@+id/sendsms"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text=" Schedule "
+            />
+    </LinearLayout>
+</ScrollView>
