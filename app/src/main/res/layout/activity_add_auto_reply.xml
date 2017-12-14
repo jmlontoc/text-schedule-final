@@ -34,7 +34,6 @@
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/colorAccent"/>
-
     </LinearLayout>
 
     <LinearLayout
@@ -103,6 +102,6 @@
             android:layout_alignParentRight="true"
             android:layout_marginBottom="10dp"
             android:layout_marginRight="10dp"/>
-
     </RelativeLayout>
+
 </LinearLayout>
