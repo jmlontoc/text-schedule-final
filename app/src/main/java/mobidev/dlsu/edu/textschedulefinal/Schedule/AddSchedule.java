@@ -29,6 +29,7 @@ public class AddSchedule extends AppCompatActivity {
     TextView tvSmsName, tvSmsNumber;
     EditText etSmsText;
     ScheduleDatabaseHelper dbHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

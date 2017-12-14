@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //lead the user to the activity to create a new record
-                Intent intent = new Intent(getBaseContext(), SelectContact.class);
+                Intent intent = new Intent(getBaseContext(), AddSchedule.class);
                 // Note: make sure to pass an extra that we want to add and not edit
                 intent.putExtra("add", true);
 

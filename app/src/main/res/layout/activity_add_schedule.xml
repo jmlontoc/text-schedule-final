@@ -5,62 +5,99 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="mobidev.dlsu.edu.textschedulefinal.Schedule.AddSchedule">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"><TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Schedule a text:"
-        android:textSize="20sp"
-        android:layout_marginLeft="5dp"
-        />
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Send to:"
-            android:layout_marginLeft="5dp"/>
-        <TextView
+        android:orientation="vertical">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/smsname"
-            android:layout_marginLeft="30dp"
-            />
-        <TextView
-            android:id="@+id/smsnumber"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            />
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Enter Phone SMS Text:"
-            android:layout_marginLeft="5dp"
-            />
-        <EditText
-            android:id="@+id/smstext"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            />
-        <DatePicker
+            android:orientation="horizontal"
+            android:background="@color/colorPrimary">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_back_black_24dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Schedule Text"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:paddingLeft="10dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorAccent"/>
+        </LinearLayout>
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/cv_calendar"
-            android:calendarViewShown="false"
-            android:datePickerMode="spinner"
-            android:spinnersShown="true"></DatePicker>
-        <TimePicker
-            android:id="@+id/tp_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:timePickerMode="spinner" />
-        <Button
-            android:id="@+id/sendsms"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text=" Schedule "
-            />
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Send to:"
+                    android:layout_marginLeft="5dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/smsname"
+                    android:layout_marginLeft="30dp"
+                    />
+                <TextView
+                    android:id="@+id/smsnumber"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    />
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Enter Phone SMS Text:"
+                    android:layout_marginLeft="5dp"
+                    />
+                <EditText
+                    android:id="@+id/smstext"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    />
+                <DatePicker
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/cv_calendar"
+                    android:calendarViewShown="false"
+                    android:datePickerMode="spinner"
+                    android:spinnersShown="true"></DatePicker>
+                <TimePicker
+                    android:id="@+id/tp_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:timePickerMode="spinner" />
+            </LinearLayout>
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:id="@+id/sendsms"
+                android:background="@drawable/ic_check_circle_primary_24dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="10dp"/>
+        </RelativeLayout>
     </LinearLayout>
 </ScrollView>
