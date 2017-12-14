@@ -75,6 +75,10 @@ public class AddAutoReply extends AppCompatActivity {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 start();
             }
+            else if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
+                Helper.easierToast("Sorry, this app wont work if you do not grant the permission",
+                        getBaseContext());
+            }
         }
     }
 
