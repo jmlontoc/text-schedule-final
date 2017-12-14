@@ -28,6 +28,7 @@ import java.util.ArrayList;
 
 import mobidev.dlsu.edu.textschedulefinal.AutoReply.AutoReplyActivity;
 import mobidev.dlsu.edu.textschedulefinal.Contacts.Contact;
+import mobidev.dlsu.edu.textschedulefinal.Schedule.SelectContact;
 import mobidev.dlsu.edu.textschedulefinal.Status.Status;
 import mobidev.dlsu.edu.textschedulefinal.Status.StatusActivity;
 
@@ -87,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //lead the user to the activity to create a new record
-                Intent intent = new Intent(getBaseContext(), AddSchedule.class);
+                Intent intent = new Intent(getBaseContext(), SelectContact.class);
                 // Note: make sure to pass an extra that we want to add and not edit
                 intent.putExtra("add", true);
 
@@ -101,15 +102,7 @@ public class MainActivity extends AppCompatActivity {
         scheduleAdapter.setOnItemClickListener(new ScheduleAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(long id) {
-                // lead the user to the activity to view the clicked item
-                //Intent intent = new Intent(getBaseContext(), ViewActivitySkeleton.class);
-                // Note: make sure to pass an extra that we want to edit and not add
-                //intent.putExtra("add", false);
-                //intent.putExtra("id", id);
-                //       also pass the id of the selected item
 
-                // END
-                //startActivity(intent);
 
                 DeleteDialog dd = new DeleteDialog();
                 Bundle bundle = new Bundle();

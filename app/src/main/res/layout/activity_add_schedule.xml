@@ -18,13 +18,19 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Enter Phone Number:"
+            android:text="Send to:"
             android:layout_marginLeft="5dp"/>
-        <EditText
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/smsname"
+            android:layout_marginLeft="30dp"
+            />
+        <TextView
             android:id="@+id/smsnumber"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:inputType="phone"
+            android:layout_marginLeft="30dp"
             />
         <TextView
             android:layout_width="fill_parent"

@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -19,30 +20,35 @@ import java.util.Date;
 import mobidev.dlsu.edu.textschedulefinal.R;
 
 public class AddSchedule extends AppCompatActivity {
-    String smsNumber, smsText;
+    String smsNumber, smsText, smsName;
     private PendingIntent pi;
     Integer hour,minute,day,month,year;
     int request;
     TimePicker tptime;
     DatePicker dpDate;
-    EditText etSmsNumber, etSmsText;
+    TextView tvSmsName, tvSmsNumber;
+    EditText etSmsText;
     ScheduleDatabaseHelper dbHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_schedule);
-
         dbHelper = new ScheduleDatabaseHelper(getBaseContext());
         tptime = (TimePicker)findViewById(R.id.tp_time);
         tptime.setIs24HourView(true);
         dpDate= (DatePicker) findViewById(R.id.cv_calendar);
         Button buttonSendSms = (Button)findViewById(R.id.sendsms);
-
+        tvSmsName = (TextView)findViewById(R.id.smsname);
+        tvSmsNumber = (TextView)findViewById(R.id.smsnumber);
+        smsName = getIntent().getExtras().getString("name");
+        smsNumber = getIntent().getExtras().getString("number");
+        tvSmsName.setText(smsName);
+        tvSmsNumber.setText(smsNumber);
         buttonSendSms.setOnClickListener(new Button.OnClickListener(){
             public void onClick(View v) {
-                etSmsNumber = (EditText)findViewById(R.id.smsnumber);
+
+
                 etSmsText = (EditText)findViewById(R.id.smstext);
-                smsNumber = etSmsNumber.getText().toString();
                 smsText = etSmsText.getText().toString();
 
                 hour=tptime.getCurrentHour();
