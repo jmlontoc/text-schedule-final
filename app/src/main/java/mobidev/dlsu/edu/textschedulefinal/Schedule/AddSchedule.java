@@ -18,6 +18,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import mobidev.dlsu.edu.textschedulefinal.R;
+import mobidev.dlsu.edu.textschedulefinal.SMSCore;
 
 public class AddSchedule extends AppCompatActivity {
     String smsNumber, smsText, smsName;
@@ -41,7 +42,7 @@ public class AddSchedule extends AppCompatActivity {
         tvSmsName = (TextView)findViewById(R.id.smsname);
         tvSmsNumber = (TextView)findViewById(R.id.smsnumber);
         smsName = getIntent().getExtras().getString("name");
-        smsNumber = getIntent().getExtras().getString("number");
+        smsNumber = getIntent().getExtras().getString("number").replaceAll("\\s", "");
         tvSmsName.setText(smsName);
         tvSmsNumber.setText(smsNumber);
         buttonSendSms.setOnClickListener(new Button.OnClickListener(){
@@ -72,7 +73,7 @@ public class AddSchedule extends AppCompatActivity {
                 AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
                 alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pi);
                 Schedule schedule = new Schedule();
-                schedule.setNumber(smsNumber);
+                schedule.setNumber(smsName + " (" + smsNumber+")");
                 schedule.setContent(smsText);
                 schedule.setDate(calendar.getTimeInMillis());
                 schedule.setRequest(request);
