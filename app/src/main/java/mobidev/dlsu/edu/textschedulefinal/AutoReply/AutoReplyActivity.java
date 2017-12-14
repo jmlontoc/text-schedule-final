@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import mobidev.dlsu.edu.textschedulefinal.Helper;
@@ -24,6 +25,7 @@ public class AutoReplyActivity extends AppCompatActivity {
 
     TextView statusTab, scheduleTab, autoReplyTab;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,8 +37,6 @@ public class AutoReplyActivity extends AppCompatActivity {
         autoReplyTab = findViewById(R.id.auto_reply_tab);
 
         // once the tabs are clicked
-
-
         // schedule
         scheduleTab.setOnClickListener(new View.OnClickListener() {
             @Override
