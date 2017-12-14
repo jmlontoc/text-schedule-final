@@ -1,6 +1,7 @@
 package mobidev.dlsu.edu.textschedulefinal.AutoReply;
 
 import android.content.ContentResolver;
+import android.content.Intent;
 import android.database.Cursor;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 
@@ -27,6 +29,7 @@ public class ModifyAutoReply extends AppCompatActivity {
     RecyclerView rvContacts;
     EditText etMessage, etReply;
     Button submitBtn, deleteBtn;
+    ImageView back_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,15 @@ public class ModifyAutoReply extends AppCompatActivity {
         etReply = findViewById(R.id.et_reply1);
         submitBtn = findViewById(R.id.btn_submit_ar1);
         deleteBtn = findViewById(R.id.btn_delete);
+        back_button = findViewById(R.id.back);
+
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getBaseContext(), AutoReplyActivity.class);
+                startActivity(i);
+            }
+        });
 
         contactsCart = new ArrayList<>();
 

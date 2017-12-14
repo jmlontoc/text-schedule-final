@@ -1,6 +1,7 @@
 package mobidev.dlsu.edu.textschedulefinal.Status;
 
 import android.content.ContentResolver;
+import android.content.Intent;
 import android.database.Cursor;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
@@ -11,9 +12,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 
+import mobidev.dlsu.edu.textschedulefinal.AutoReply.AutoReplyActivity;
 import mobidev.dlsu.edu.textschedulefinal.Contacts.Contact;
 import mobidev.dlsu.edu.textschedulefinal.Contacts.ContactAdapter;
 import mobidev.dlsu.edu.textschedulefinal.Helper;
@@ -28,6 +31,8 @@ public class ModifyStatus extends AppCompatActivity {
     EditText etMessage, etReply;
     Button submitBtn, deleteBtn;
 
+    ImageView back_button;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +43,15 @@ public class ModifyStatus extends AppCompatActivity {
         etReply = findViewById(R.id.et_reply_status1);
         submitBtn = findViewById(R.id.btn_submit_status1);
         deleteBtn = findViewById(R.id.btn_delete_status);
+        back_button = findViewById(R.id.back);
+
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getBaseContext(), StatusActivity.class);
+                startActivity(i);
+            }
+        });
 
         contactsCart = new ArrayList<>();
 
