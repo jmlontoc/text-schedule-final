@@ -148,6 +148,18 @@ public class AutoReplyDBHelper extends SQLiteOpenHelper {
         );
     }
 
+    public Cursor getRecipients(long id) {
+        return getWritableDatabase().query(
+             AutoReply.TABLE2_NAME,
+                null,
+                AutoReply.COLUMN_AR_ID + "=?",
+                new String[]{id+""},
+                null,
+                null,
+                null
+        );
+    }
+
     public AutoReply getAutoReply(long id) {
         SQLiteDatabase db = getWritableDatabase();
         Cursor c = db.query(
