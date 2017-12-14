@@ -23,6 +23,7 @@ import mobidev.dlsu.edu.textschedulefinal.Schedule.ScheduleDatabaseHelper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     ScheduleDatabaseHelper dbHelper;
     ScheduleAdapter scheduleAdapter;
 
-    Button statusTab, scheduleTab, autoReplyTab;
+    TextView statusTab, scheduleTab, autoReplyTab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
