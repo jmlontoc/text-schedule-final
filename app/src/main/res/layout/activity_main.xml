@@ -114,5 +114,5 @@
             android:layout_margin="15dp"
             android:layout_above="@id/rv"/>
     </RelativeLayout>
-    
+
 </LinearLayout>
