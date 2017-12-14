@@ -11,7 +11,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/textsched_icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -28,19 +28,24 @@
             android:name=".Schedule.AlarmReceiver"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
                 <action android:name="android.intent.action.INPUT_METHOD_CHANGED" />
             </intent-filter>
         </receiver>
-
+        <receiver android:name=".SMSCore">
+        <intent-filter>
+            <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+        </intent-filter>
+        </receiver>
         <activity android:name=".Schedule.AddSchedule" />
         <activity android:name=".AutoReply.AutoReplyActivity" />
         <activity android:name=".AutoReply.AddAutoReply" />
         <activity android:name=".AutoReply.ModifyAutoReply" />
         <activity android:name=".Status.StatusActivity" />
         <activity android:name=".Status.AddStatus" />
-        <activity android:name=".Status.ModifyStatus" />
+        <activity android:name=".Status.ModifyStatus"/>
         <activity android:name=".Schedule.SelectContact"></activity>
+
     </application>
 
 </manifest>

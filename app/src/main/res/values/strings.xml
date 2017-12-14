@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">TextScheduleFinal</string>
+    <string name="app_name">TextSched</string>
+    <string name="actionbar_sched">Scheduler</string>
+    <string name="actionbar_reply">Auto Reply</string>
+    <string name="actionbar_status">Status</string>
 </resources>
