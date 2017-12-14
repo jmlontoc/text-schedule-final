@@ -4,6 +4,7 @@
     <string name="actionbar_reply">Auto Reply</string>
     <string name="actionbar_status">Status</string>
     <string name="message">Message: </string>
+    <string name="status">Status: </string>
     <string name="reply">Reply: </string>
     <string name="contacts">Contacts: </string>
 </resources>
