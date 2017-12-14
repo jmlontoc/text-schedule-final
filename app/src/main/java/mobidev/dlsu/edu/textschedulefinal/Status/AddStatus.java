@@ -2,6 +2,7 @@ package mobidev.dlsu.edu.textschedulefinal.Status;
 
 import android.Manifest;
 import android.content.ContentResolver;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.Build;
@@ -16,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -36,6 +38,7 @@ public class AddStatus extends AppCompatActivity {
     RecyclerView rvContacts;
     EditText etMessage, etReply;
     Button submitBtn;
+    ImageView back_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +49,17 @@ public class AddStatus extends AppCompatActivity {
         etMessage = findViewById(R.id.et_status);
         etReply = findViewById(R.id.et_reply_status);
         submitBtn = findViewById(R.id.btn_submit_status);
+        back_button = findViewById(R.id.back);
 
         contactsCart = new ArrayList<>();
+
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getBaseContext(), StatusActivity.class);
+                startActivity(i);
+            }
+        });
 
         start();
 
