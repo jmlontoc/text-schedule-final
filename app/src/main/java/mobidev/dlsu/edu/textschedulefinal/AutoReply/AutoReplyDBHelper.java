@@ -16,7 +16,7 @@ public class AutoReplyDBHelper extends SQLiteOpenHelper {
 
 
     public static final String SCHEMA = "textschedule";
-    public static int VERSION = 6;
+    public static int VERSION = 3;
 
     public AutoReplyDBHelper(Context context) {
         super(context, SCHEMA, null, VERSION);
@@ -43,12 +43,6 @@ public class AutoReplyDBHelper extends SQLiteOpenHelper {
                     + ");";
         sqLiteDatabase.execSQL(sql);
         sqLiteDatabase.execSQL(sql2);
-
-
-        addAutoReply(
-                new AutoReply("ada", "asda", 1),
-                sqLiteDatabase
-        );
     }
 
     @Override
@@ -141,7 +135,6 @@ public class AutoReplyDBHelper extends SQLiteOpenHelper {
         return rowsAffected >0;
 
     }
-
 
     public Cursor getAllAutoReplies() {
         return getWritableDatabase().query(

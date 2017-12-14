@@ -25,7 +25,10 @@
         </activity>
         <activity android:name=".AutoReply.AutoReplyActivity" />
         <activity android:name=".AutoReply.AddAutoReply" />
-        <activity android:name=".AutoReply.ModifyAutoReply"></activity>
+        <activity android:name=".AutoReply.ModifyAutoReply" />
+        <activity android:name=".Status.StatusActivity" />
+        <activity android:name=".Status.AddStatus" />
+        <activity android:name=".Status.ModifyStatus"></activity>
     </application>
 
 </manifest>

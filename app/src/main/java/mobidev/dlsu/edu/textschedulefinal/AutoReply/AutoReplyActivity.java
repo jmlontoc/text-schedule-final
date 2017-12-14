@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 
+import mobidev.dlsu.edu.textschedulefinal.Helper;
 import mobidev.dlsu.edu.textschedulefinal.R;
 
 public class AutoReplyActivity extends AppCompatActivity {
@@ -42,9 +43,11 @@ public class AutoReplyActivity extends AppCompatActivity {
             }
         });
 
+
         adapter.setOnItemClickListener(new AutoReplyAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(long id) {
+                // Helper.easierToast("it went here", getBaseContext());
                 Intent i = new Intent(getBaseContext(), ModifyAutoReply.class);
                 i.putExtra("modify", id);
                 startActivity(i);

@@ -17,6 +17,8 @@ import java.util.ArrayList;
 
 import mobidev.dlsu.edu.textschedulefinal.AutoReply.AutoReplyActivity;
 import mobidev.dlsu.edu.textschedulefinal.Contacts.Contact;
+import mobidev.dlsu.edu.textschedulefinal.Status.Status;
+import mobidev.dlsu.edu.textschedulefinal.Status.StatusActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
 
         // once the tabs are clicked
 
+
+        // auto reply
         autoReplyTab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -40,6 +44,19 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        //status
+        statusTab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getBaseContext(), StatusActivity.class);
+                startActivity(i);
+            }
+        });
+
+
+        // scheduler here
+        //TODO
 
     }
 
