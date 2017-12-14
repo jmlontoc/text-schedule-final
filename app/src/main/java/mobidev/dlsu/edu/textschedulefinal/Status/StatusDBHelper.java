@@ -35,10 +35,10 @@ public class StatusDBHelper extends SQLiteOpenHelper {
                 + ");";
 
         String sql2 = "CREATE TABLE " + Status.TABLE2_NAME + " ("
+                + Status.COLUMN_CONTACT_NUMBER + " TEXT,"
                 + Status.COLUMN_STATUS_ID + " INTEGER,"
                 + Status.COLUMN_CONTACT_NAME + " TEXT,"
-                + Status.COLUMN_CONTACT_NUMBER + " TEXT,"
-                + " PRIMARY KEY ("+ Status.COLUMN_STATUS_ID +"),"
+                + " PRIMARY KEY ("+ Status.COLUMN_STATUS_ID +", "+ Status.COLUMN_CONTACT_NUMBER +"),"
                 + " FOREIGN KEY ("+ Status.COLUMN_STATUS_ID +") "
                 + "REFERENCES " + Status.TABLE_NAME + "("+ Status.COLUMN_ID +")"
                 + ");";
@@ -165,5 +165,17 @@ public class StatusDBHelper extends SQLiteOpenHelper {
         db.close();
 
         return ar;
+    }
+
+    public Cursor getStatusRecipients(long id) {
+        return getWritableDatabase().query(
+                Status.TABLE2_NAME,
+                null,
+                Status.COLUMN_STATUS_ID + "=?",
+                new String[]{id+""},
+                null,
+                null,
+                null
+        );
     }
 }

@@ -37,7 +37,7 @@ public class AutoReplyDBHelper extends SQLiteOpenHelper {
                     + AutoReply.COLUMN_AR_ID + " INTEGER,"
                     + AutoReply.COLUMN_CONTACT_NAME + " TEXT,"
                     + AutoReply.COLUMN_CONTACT_NUMBER + " TEXT,"
-                    + " PRIMARY KEY ("+ AutoReply.COLUMN_AR_ID +"),"
+                    + " PRIMARY KEY ("+ AutoReply.COLUMN_AR_ID +", "+ AutoReply.COLUMN_CONTACT_NUMBER +"),"
                     + " FOREIGN KEY ("+ AutoReply.COLUMN_AR_ID +") "
                     + "REFERENCES " + AutoReply.TABLE_NAME + "("+ AutoReply.COLUMN_ID +")"
                     + ");";
@@ -142,6 +142,18 @@ public class AutoReplyDBHelper extends SQLiteOpenHelper {
                 null,
                 null,
                 null,
+                null,
+                null,
+                null
+        );
+    }
+
+    public Cursor getRecipients(long id) {
+        return getWritableDatabase().query(
+             AutoReply.TABLE2_NAME,
+                null,
+                AutoReply.COLUMN_AR_ID + "=?",
+                new String[]{id+""},
                 null,
                 null,
                 null

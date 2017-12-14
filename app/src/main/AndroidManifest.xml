@@ -38,6 +38,13 @@
         <activity android:name=".Status.StatusActivity" />
         <activity android:name=".Status.AddStatus" />
         <activity android:name=".Status.ModifyStatus"></activity>
+
+        <receiver android:name=".SMSCore">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>
