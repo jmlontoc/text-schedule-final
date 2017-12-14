@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
 
         // once the tabs are clicked
 
-
         // auto reply
         autoReplyTab.setOnClickListener(new View.OnClickListener() {
             @Override
