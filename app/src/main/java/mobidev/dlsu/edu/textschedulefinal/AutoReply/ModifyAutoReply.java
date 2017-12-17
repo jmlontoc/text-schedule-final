@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ToggleButton;
 
 import java.util.ArrayList;
 
@@ -30,6 +31,7 @@ public class ModifyAutoReply extends AppCompatActivity {
     EditText etMessage, etReply;
     Button submitBtn, deleteBtn;
     ImageView back_button;
+    ToggleButton toggleButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,7 @@ public class ModifyAutoReply extends AppCompatActivity {
         submitBtn = findViewById(R.id.btn_submit_ar1);
         deleteBtn = findViewById(R.id.btn_delete);
         back_button = findViewById(R.id.back);
+        toggleButton = findViewById(R.id.toggleButton);
 
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,10 +112,18 @@ public class ModifyAutoReply extends AppCompatActivity {
                 if (errorCount == 0) {
                     AutoReplyDBHelper dbHelper = new AutoReplyDBHelper(getBaseContext());
 
-                    AutoReply autoReply = new AutoReply(reply, message, 1);
+                    int isActive = 1;
+
+                    if (toggleButton.isChecked()) {
+                        isActive = 0;
+                    }
+
+                    AutoReply autoReply = new AutoReply(reply, message, isActive);
                     autoReply.setContacts(contactsCart);
 
                     // add to db
+
+                    Log.i("hello", isActive+"");
 
                     dbHelper.editAutoReply(autoReply, id);
 

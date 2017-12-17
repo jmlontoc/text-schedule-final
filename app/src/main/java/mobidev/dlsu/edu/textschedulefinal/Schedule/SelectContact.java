@@ -124,6 +124,7 @@ public class SelectContact extends AppCompatActivity {
                 intent.putExtra("name", name);
                 intent.putExtra("number", number);
                 startActivity(intent);
+                finish();
             }
         });
     }

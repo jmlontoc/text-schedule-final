@@ -67,11 +67,8 @@ public class SMSCore extends BroadcastReceiver {
                 Log.i("wew", message + " " + body + " " + isActive);
 
                 if (isActive == 0) {
-
-                    if (body.toUpperCase().contains(message.toUpperCase())) {
-
-                        sendStatusMessage(id, context, sender, reply);
-                    }
+                    Log.i("test", "hello");
+                    sendStatusMessage(id, context, sender, reply);
                 }
 
             }while(cursor.moveToNext());
@@ -197,8 +194,11 @@ public class SMSCore extends BroadcastReceiver {
 
         if (c.moveToFirst()) {
 
+            Log.i("im close", "yep");
+
             do {
 
+                Log.i("im closadae", sender);
                 if (c.getString(c.getColumnIndex(Status.COLUMN_CONTACT_NUMBER)).contains("+")) {
 
 
@@ -208,7 +208,7 @@ public class SMSCore extends BroadcastReceiver {
                             )
                     )) {
 
-                        Log.i("im close", "yep");
+                        Log.i("im asasd", "d");
 
                         String name = c.getString(c.getColumnIndex(Status.COLUMN_CONTACT_NAME));
 
@@ -231,7 +231,7 @@ public class SMSCore extends BroadcastReceiver {
                         )
                 )) {
 
-                    Log.i("im close", "yep");
+                    Log.i("im close", "ybakit walaep");
 
                     String name = c.getString(c.getColumnIndex(Status.COLUMN_CONTACT_NAME));
 

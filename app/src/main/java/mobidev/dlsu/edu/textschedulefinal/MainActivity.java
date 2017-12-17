@@ -84,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(scheduleAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getBaseContext()));
 
+
         tvAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

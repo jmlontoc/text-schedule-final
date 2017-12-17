@@ -2,6 +2,7 @@ package mobidev.dlsu.edu.textschedulefinal.AutoReply;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +31,15 @@ public class AutoReplyAdapter extends CursorRecyclerViewAdapter<AutoReplyAdapter
         final long id = cursor.getLong(cursor.getColumnIndex(AutoReply.COLUMN_ID));
         String message = cursor.getString(cursor.getColumnIndex(AutoReply.COLUMN_MESSAGE));
         String reply = cursor.getString(cursor.getColumnIndex(AutoReply.COLUMN_REPLY));
+
+        //TODO paolo
+
+
+        int isActive = cursor.getInt(cursor.getColumnIndex(AutoReply.COLUMN_ACTIVE));
+
+        if (isActive != 0) {
+            viewHolder.tvMessage.setTextColor(Color.parseColor("#807d7d"));
+        }
 
         viewHolder.tvMessage.setText(message);
         viewHolder.tvReply.setText(reply);

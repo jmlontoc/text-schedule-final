@@ -113,6 +113,7 @@ public class AutoReplyDBHelper extends SQLiteOpenHelper {
 
         contentValues.put(AutoReply.COLUMN_MESSAGE, newAR.getMessage());
         contentValues.put(AutoReply.COLUMN_REPLY, newAR.getReply());
+        contentValues.put(AutoReply.COLUMN_ACTIVE, newAR.getIsActive());
 
         ContentValues cv = new ContentValues();
 
